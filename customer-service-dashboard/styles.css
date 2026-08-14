@@ -1,108 +1,231 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0");
 
-html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
+:root {
+    --ink: #172033;
+    --muted: #667085;
+    --brand: #c81e3a;
+    --navy: #172554;
+    --line: #e7eaf0;
+}
+
+html,
+body,
+[class*="css"] {
+    font-family: "Inter", sans-serif;
+}
+
+.material-symbols-rounded {
+    direction: ltr;
+    display: inline-block;
+    font-family: "Material Symbols Rounded";
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+}
+
+[data-testid="stAppViewContainer"] {
+    background:
+        radial-gradient(circle at 10% 0%, rgba(200, 30, 58, 0.09), transparent 26rem),
+        radial-gradient(circle at 100% 18%, rgba(37, 99, 235, 0.08), transparent 25rem),
+        #f8fafc;
+}
+
+[data-testid="stHeader"] {
+    background: transparent;
+}
+
+.block-container {
+    max-width: 1050px;
+    padding-top: 2.2rem;
+    padding-bottom: 3rem;
 }
 
 .main-header {
+    padding: 1.5rem 0 0.5rem;
     text-align: center;
-    padding: 2rem 0 1rem 0;
+}
+
+.header-icon {
+    margin-bottom: 0.5rem;
+}
+
+.header-icon .material-symbols-rounded {
+    color: var(--brand);
+    font-size: 3.5rem;
 }
 
 .main-header h1 {
+    margin: 0 0 0.5rem;
+    color: #068806;
     font-size: 2.2rem;
     font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 0.5rem;
     letter-spacing: -0.5px;
 }
 
 .subtitle {
-    text-align: center;
-    color: #6b7280;
+    margin: 0 0 2.5rem;
+    color: #000000;
     font-size: 1.05rem;
-    margin-bottom: 2.5rem;
-    font-weight: 400;
+    line-height: 1.65;
+    text-align: center;
 }
 
-.help-section-title {
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 1.5rem;
+.section-heading {
+    margin: 2.4rem 0 1.15rem;
+}
+
+.section-heading h2 {
+    margin: 0 0 0.35rem;
+    color: #068806;
+    font-size: 1.55rem;
+    letter-spacing: -0.025em;
+}
+
+.section-heading p {
+    margin: 0;
+    color: #000000;
 }
 
 .support-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border: 1px solid #e2e8f0;
-    border-radius: 16px;
-    padding: 1.8rem 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    min-width: 220px;
-    max-width: 280px;
-    flex: 1;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    min-height: 205px;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.055);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .support-card:hover {
+    border-color: #fecdd3;
+    box-shadow: 0 16px 36px rgba(16, 24, 40, 0.1);
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-    border-color: #cbd5e1;
 }
 
 .card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.8rem;
-    display: block;
+    display: inline-grid;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.15rem;
+    place-items: center;
+    border-radius: 14px;
+    background: #fff1f2;
+    font-size: 1.55rem;
 }
 
 .card-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.45rem;
+    color: #068806;
+    font-size: 1.03rem;
+    font-weight: 750;
 }
 
 .card-desc {
-    font-size: 0.85rem;
-    color: #64748b;
-    line-height: 1.4;
+    color: #000000;
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.card-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 1.35rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #d9dee8;
+    border-radius: 12px;
+       color: #000010;
+    background: white;
+    box-shadow: 0 2px 5px rgba(16, 24, 40, 0.04);
+    cursor: default;
+    font: 700 0.87rem "Inter", sans-serif;
+}
+
+.card-action span {
+    color: var(--brand);
+    font-size: 1.05rem;
+}
+
+.inline-icon {
+    margin-right: 0.2rem;
+    font-size: 1rem;
+    vertical-align: -0.15em;
+}
+
+div[data-testid="stButton"] > button {
+    min-height: 44px;
+    margin-top: 0.55rem;
+    border: 1px solid #d9dee8;
+    border-radius: 12px;
+    color: var(--navy);
+    background: white;
+    box-shadow: 0 2px 5px rgba(16, 24, 40, 0.04);
+    font-weight: 700;
+    transition: all 0.18s ease;
+}
+
+div[data-testid="stButton"] > button:hover {
+    border-color: var(--brand);
+    color: white;
+    background: var(--brand);
+    transform: translateY(-1px);
+}
+
+div[data-testid="stButton"] > button[kind="primary"] {
+    border-color: var(--brand);
+    color: white;
+    background: var(--brand);
 }
 
 .info-box {
-    background: #eff6ff;
-    border-left: 4px solid #3b82f6;
-    border-radius: 8px;
+    margin: 1.35rem 0 0.7rem;
     padding: 1rem 1.2rem;
-    margin: 1rem 0;
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid #2563eb;
+    border-radius: 12px;
+    background: #eff6ff;
 }
 
 .info-box p {
     margin: 0;
-    color: #1e40af;
-    font-size: 0.95rem;
+    color: #1e3a8a;
+    font-size: 0.93rem;
+}
+
+details {
+    border: 1px solid var(--line) !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, 0.8) !important;
 }
 
 .footer-divider {
-    margin: 2.5rem 0 1.5rem 0;
-    border: none;
     height: 1px;
+    margin: 2.5rem 0 1.5rem;
     background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
 }
 
 .footer-text {
-    text-align: center;
     color: #9ca3af;
     font-size: 0.85rem;
+    text-align: center;
 }
 
 .footer-text a {
     color: #3b82f6;
-    text-decoration: none;
     font-weight: 500;
+    text-decoration: none;
 }
 
 .footer-text a:hover {
@@ -112,21 +235,26 @@ html, body, [class*="css"] {
 .quick-links {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 1.5rem;
     margin-top: 1rem;
-    flex-wrap: wrap;
 }
 
 .quick-link {
     color: #6b7280;
     font-size: 0.8rem;
-    text-decoration: none;
 }
 
 .quick-link:hover {
     color: #3b82f6;
 }
 
-div[data-testid="stButton"] > button {
-    display: none;
+@media (max-width: 700px) {
+    .block-container {
+        padding: 1rem 1rem 2rem;
+    }
+
+    .main-header h1 {
+        font-size: 1.85rem;
+    }
 }
