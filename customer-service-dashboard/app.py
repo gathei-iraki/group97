@@ -1,34 +1,86 @@
+from pathlib import Path
+
 import streamlit as st
+
 
 st.set_page_config(
     page_title="Northstar Customer Support",
-    page_icon="🛒",
-    layout="centered"
+    page_icon=":material/support_agent:",
+    layout="centered",
+    initial_sidebar_state="collapsed",
 )
 
-st.title("Northstar Customer Support")
+css_path = Path(__file__).with_name("styles.css")
+if css_path.exists():
+    st.markdown(f"<style>{css_path.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
 
-st.write(
-    "Welcome to Northstar Retail Co. Self-Service Support."
+st.markdown(
+    """
+    <div class="main-header">
+        <div class="header-icon" aria-hidden="true">
+            <span class="material-symbols-rounded">support_agent</span>
+        </div>
+        <h1>Northstar Customer Support</h1>
+    </div>
+    <p class="subtitle">
+        Welcome to Northstar Retail Co. Self-Service Support.<br>
+        We're here to help you find answers, fast.
+    </p>
+    <div class="section-heading">
+        <h2>What can we help with?</h2>
+        <p>Choose a service to get started. Most requests take less than two minutes.</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
-st.write(
-    "Choose an option below to get help with your order."
-)
+col1, col2 = st.columns(2, gap="medium")
 
-st.subheader("How can we help you today?")
+with col1:
+    st.markdown(
+        """
+        <div class="support-card">
+            <span class="card-icon material-symbols-rounded" aria-hidden="true">local_shipping</span>
+            <div class="card-title">Check order status</div>
+            <div class="card-desc">Track your package and see the latest delivery updates.</div>
+            <button class="card-action" type="button">Track my order <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-order_status = st.button("Check Order Status")
-returns = st.button("Returns & Refunds")
+with col2:
+    st.markdown(
+        """
+        <div class="support-card">
+            <span class="card-icon material-symbols-rounded" aria-hidden="true">assignment_return</span>
+            <div class="card-title">Returns & refunds</div>
+            <div class="card-desc">Start a return or check the progress of your refund.</div>
+            <button class="card-action" type="button">Manage a return <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
-if order_status:
-    st.info("Order Status service will be available here.")
 
-if returns:
-    st.info("Returns & Refunds service will be available here.")
 
-st.divider()
-
-st.caption(
-    "If your issue cannot be resolved here, please contact Customer Support."
+st.markdown(
+    """
+    <div class="footer-divider"></div>
+    <div class="footer-text">
+        <p>Can't find what you need? We're here to help.</p>
+        <p>
+            <span class="material-symbols-rounded inline-icon" aria-hidden="true">mail</span>
+            <a href="mailto:support@northstar.com">support@northstar.com</a> &nbsp;|&nbsp;
+            <span class="material-symbols-rounded inline-icon" aria-hidden="true">call</span>
+            <a href="tel:+254-735-0199">+254-735-0199</a>
+        </p>
+        <div class="quick-links">
+            <span class="quick-link">Privacy Policy</span>
+            <span class="quick-link">Terms of Service</span>
+            <span class="quick-link">Accessibility</span>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
