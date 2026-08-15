@@ -1,3 +1,4 @@
+# app.py
 from pathlib import Path
 
 import streamlit as st
@@ -10,9 +11,13 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-css_path = Path(__file__).with_name("styles.css")
-if css_path.exists():
-    st.markdown(f"<style>{css_path.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
+# --- Load Global Styles ---
+try:
+    css_path = Path(__file__).with_name("styles.css")
+    if css_path.exists():
+        st.markdown(f"<style>{css_path.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
+except Exception as e:
+    st.warning(f"⚠️ Could not load stylesheet: {str(e)}")
 
 st.markdown(
     """
@@ -34,21 +39,27 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# ==================== COLUMN 1: Order Status ====================
 col1, col2 = st.columns(2, gap="medium")
 
 with col1:
+    # Card content (HTML for styling only)
     st.markdown(
         """
         <div class="support-card">
             <span class="card-icon material-symbols-rounded" aria-hidden="true">local_shipping</span>
             <div class="card-title">Check order status</div>
             <div class="card-desc">Track your package and see the latest delivery updates.</div>
-            <button class="card-action" type="button">Track my order <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
         </div>
         """,
         unsafe_allow_html=True,
     )
+    
+    # ✅ FIXED: Streamlit button with navigation
+    if st.button("🚚 Track my order", key="track_order", use_container_width=True):
+        st.switch_page("pages/order_status.py")
 
+# ==================== COLUMN 2: Returns & Refunds ====================
 with col2:
     st.markdown(
         """
@@ -62,8 +73,7 @@ with col2:
     )
     st.page_link("pages/returns_refunds.py", label="Manage a return →", use_container_width=True)
 
-
-
+# ==================== Footer ====================
 st.markdown(
     """
     <div class="footer-divider"></div>
