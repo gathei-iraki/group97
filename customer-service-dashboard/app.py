@@ -56,11 +56,11 @@ with col2:
             <span class="card-icon material-symbols-rounded" aria-hidden="true">assignment_return</span>
             <div class="card-title">Returns & refunds</div>
             <div class="card-desc">Start a return or check the progress of your refund.</div>
-            <button class="card-action" type="button">Manage a return <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
         </div>
         """,
         unsafe_allow_html=True,
     )
+    st.page_link("pages/returns_refunds.py", label="Manage a return →", use_container_width=True)
 
 
 

@@ -31,6 +31,8 @@ Features:
 - Answer eligibility questions
 - Display return instructions
 - Display refund information
+- Use an order number without requesting an email address
+- Escalate damaged, incorrect, exceptional, or overdue cases
 
 4. Help/Escalation Section
 
