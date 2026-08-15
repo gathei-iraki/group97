@@ -71,10 +71,7 @@ with col2:
         """,
         unsafe_allow_html=True,
     )
-    
-    # ✅ FIXED: Streamlit button (placeholder for future)
-    if st.button("🔄 Manage a return", key="manage_return", use_container_width=True):
-        st.info("🔄 Returns feature coming soon! Please check back later.")
+    st.page_link("pages/returns_refunds.py", label="Manage a return →", use_container_width=True)
 
 # ==================== Footer ====================
 st.markdown(

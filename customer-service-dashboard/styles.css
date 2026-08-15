@@ -4,7 +4,7 @@
 :root {
     --ink: #172033;
     --muted: #667085;
-    --brand: #c81e3a;
+    --brand: #068806;
     --navy: #172554;
     --line: #e7eaf0;
 }
@@ -258,3 +258,8 @@ details {
         font-size: 1.85rem;
     }
 }
+
+[data-testid="stAppViewContainer"] h1 {
+    color: #068806;
+}
+
