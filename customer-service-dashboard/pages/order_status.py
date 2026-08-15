@@ -18,7 +18,7 @@ try:
     if css_path.exists():
         st.markdown(f"<style>{css_path.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
 except Exception as e:
-    st.warning(f"⚠️ Could not load stylesheet: {str(e)}")
+    st.warning(f"Could not load stylesheet: {str(e)}", icon=":material/warning:")
 
 # --- Back Navigation ---
 st.markdown(
@@ -128,8 +128,9 @@ with st.container():
         col1, col2, col3 = st.columns([2, 1, 1])
         with col1:
             submitted = st.form_submit_button(
-                "🔍 Check Status",
+                "Check Status",
                 type="primary",
+                icon=":material/search:",
                 use_container_width=True,
             )
         with col2:
@@ -144,33 +145,33 @@ if clear_clicked:
 # --- Main Logic ---
 if submitted:
     if not order_id or not order_id.strip():
-        st.error("⚠️ Please enter an order number.")
+        st.error("Please enter an order number.", icon=":material/warning:")
     elif len(order_id.strip()) < 3:
-        st.warning("⚠️ Please enter a valid order number (at least 3 characters).")
+        st.warning("Please enter a valid order number (at least 3 characters).", icon=":material/warning:")
     elif len(order_id.strip()) > 12:
-        st.warning("⚠️ Please enter a valid order number (maximum 12 characters).")
+        st.warning("Please enter a valid order number (maximum 12 characters).", icon=":material/warning:")
     else:
         try:
             with st.spinner("Looking up your order..."):
                 order_data = generate_mock_order_status(order_id.strip())
             
             # --- Success: Display Results ---
-            st.success(f"✅ Order found for {order_data['order_id']}!")
+            st.success(f"Order found for {order_data['order_id']}!", icon=":material/check_circle:")
             
             # Status with appropriate styling
             status = order_data["status"]
             status_colors = {
-                "Processing": ("🔄", "#d69e2e", "Your order is being prepared for shipment."),
-                "Shipped": ("🚚", "#2b6cb0", f"Tracking Number: `{order_data['tracking_number']}`"),
-                "Out for Delivery": ("🚀", "#38a169", "📬 Your order is out for delivery today!"),
-                "Delivered": ("✅", "#38a169", "🎉 Your order has been delivered."),
+                "Processing": ("progress_activity", "#d69e2e", "Your order is being prepared for shipment."),
+                "Shipped": ("local_shipping", "#2b6cb0", f"Tracking Number: `{order_data['tracking_number']}`"),
+                "Out for Delivery": ("delivery_truck_speed", "#38a169", "Your order is out for delivery today!"),
+                "Delivered": ("check_circle", "#38a169", "Your order has been delivered."),
             }
-            icon, color, message = status_colors.get(status, ("📦", "#667085", ""))
+            icon, color, message = status_colors.get(status, ("package_2", "#667085", ""))
             
             st.markdown(
                 f"""
                 <div class="status-badge" style="--status-color: {color}; background: {color}10; border-color: {color};">
-                    <span class="status-icon">{icon}</span>
+                    <span class="status-icon material-symbols-rounded">{icon}</span>
                     <div class="status-content">
                         <div class="status-title" style="color: {color};">
                             Current Status: {status}
@@ -185,22 +186,22 @@ if submitted:
             # --- Order Details Grid ---
             col1, col2, col3 = st.columns(3)
             with col1:
-                st.metric("📋 Order Number", order_data["order_id"])
+                st.metric("Order Number", order_data["order_id"])
             with col2:
-                st.metric("📅 Order Date", order_data["order_date"])
+                st.metric("Order Date", order_data["order_date"])
             with col3:
                 delivery_display = order_data["estimated_delivery"]
                 if delivery_display == "Delivered":
-                    st.metric("✅ Delivery Status", "Delivered")
+                    st.metric("Delivery Status", "Delivered")
                 else:
-                    st.metric("📦 Estimated Delivery", delivery_display)
+                    st.metric("Estimated Delivery", delivery_display)
             
             # Tracking Number (if available)
             if order_data["tracking_number"]:
-                st.info(f"📮 **Tracking Number:** `{order_data['tracking_number']}`")
+                st.info(f"**Tracking Number:** `{order_data['tracking_number']}`", icon=":material/local_post_office:")
             
             # --- Order Timeline ---
-            with st.expander("📜 View Order Timeline", expanded=False):
+            with st.expander("View Order Timeline", expanded=False, icon=":material/history:"):
                 for event in order_data["history"]:
                     st.markdown(
                         f"""
@@ -217,7 +218,7 @@ if submitted:
             st.markdown(
                 """
                 <div class="help-section">
-                    <h3>❓ Need More Help?</h3>
+                    <h3><span class="material-symbols-rounded">help</span> Need More Help?</h3>
                     <p>If you have questions about your order or need further assistance, our support team is here for you.</p>
                     <div class="support-buttons">
                         <a href="mailto:support@northstar.com" class="support-button email">
@@ -234,7 +235,7 @@ if submitted:
                 unsafe_allow_html=True,
             )
         except Exception as e:
-            st.error(f"❌ Error retrieving order status: {str(e)}")
+            st.error(f"Error retrieving order status: {str(e)}", icon=":material/error:")
             st.info("Please try again later or contact our support team.")
 
 # --- Footer ---
