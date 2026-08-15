@@ -6,14 +6,16 @@ import streamlit as st
 from return_rules import check_eligibility, find_order, refund_guidance
 
 
-st.set_page_config(page_title="Returns & refunds | Northstar", page_icon="↩️")
+st.set_page_config(
+    page_title="Returns & refunds | Northstar",
+    page_icon=":material/assignment_return:",
+)
 css_path = Path(__file__).parents[1] / "styles.css"
 if css_path.exists():
     st.markdown(f"<style>{css_path.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
 
 st.title("Returns & refunds")
-st.caption("Check eligibility, start a return, or understand the progress of a refund.")
-st.info("MVP policy: standard items may be returned unused and in original packaging within 30 days of delivery. Final-sale items are excluded.")
+
 
 task = st.radio(
     "What would you like to do?",
@@ -96,11 +98,7 @@ with st.expander("Return and refund policy used by this MVP"):
         - Final-sale items: not returnable unless damaged or incorrect.
         - Damaged or incorrect items: free-return specialist path.
         - Change-of-mind shipping cost: requires Northstar confirmation.
-        - Refund destination: original payment method.
-        - Refund timing: normally 5–10 days after inspection/issue.
-        - Exchanges: not supported in the MVP; return and reorder.
+        
 
-        These are demonstration assumptions and must be approved by Northstar before launch.
         """
     )
-

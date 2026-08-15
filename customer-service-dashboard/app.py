@@ -17,7 +17,7 @@ try:
     if css_path.exists():
         st.markdown(f"<style>{css_path.read_text(encoding='utf-8')}</style>", unsafe_allow_html=True)
 except Exception as e:
-    st.warning(f"⚠️ Could not load stylesheet: {str(e)}")
+    st.warning(f"Could not load stylesheet: {str(e)}", icon=":material/warning:")
 
 st.markdown(
     """
@@ -55,8 +55,12 @@ with col1:
         unsafe_allow_html=True,
     )
     
-    # ✅ FIXED: Streamlit button with navigation
-    if st.button("🚚 Track my order", key="track_order", use_container_width=True):
+    if st.button(
+        "Track my order",
+        key="track_order",
+        icon=":material/local_shipping:",
+        use_container_width=True,
+    ):
         st.switch_page("pages/order_status.py")
 
 # ==================== COLUMN 2: Returns & Refunds ====================
@@ -71,7 +75,13 @@ with col2:
         """,
         unsafe_allow_html=True,
     )
-    st.page_link("pages/returns_refunds.py", label="Manage a return →", use_container_width=True)
+    if st.button(
+        "Manage a return",
+        key="manage_return",
+        icon=":material/assignment_return:",
+        use_container_width=True,
+    ):
+        st.switch_page("pages/returns_refunds.py")
 
 # ==================== Footer ====================
 st.markdown(
