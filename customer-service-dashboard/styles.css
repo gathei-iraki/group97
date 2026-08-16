@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0");
 
 :root {
+    color-scheme: only light;
     --ink: #172033;
     --muted: #667085;
     --brand: #068806;
@@ -15,6 +16,22 @@ html,
 body,
 [class*="css"] {
     font-family: "Inter", sans-serif;
+}
+
+html,
+body,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"] {
+    color-scheme: only light;
+    color: var(--ink);
+}
+
+/* Keep native form controls light even when the browser requests dark mode. */
+input,
+textarea,
+select,
+button {
+    color-scheme: only light;
 }
 
 .material-symbols-rounded {
